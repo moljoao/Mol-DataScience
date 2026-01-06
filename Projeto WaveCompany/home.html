@@ -3,210 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wave Company - Recomende e Ganhe</title>
+    <title>INDIKAE - Premium Solutions</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-wave-square"></i>Wave Company</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- NAVBAR PREMIUM -->
+    <nav class="navbar navbar-expand-lg navbar-premium sticky-top" id="mainNavbar">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand premium-logo" href="#">
+                <span class="logo-text">INDIKAE</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#como-funciona">Como Funciona</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#beneficios">Benefícios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contato">Contato</a>
+                        <a class="nav-link" href="#clientes">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-primary-custom" href="#cadastro" style="margin-left: 2rem;">Comece Agora</a>
+                        <a class="nav-link" href="#proposta">Proposta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-premium-nav" href="#formulario">Contato</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
+    <!-- HERO SECTION PREMIUM -->
+    <section class="hero-premium">
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="hero-title">
+                        Transforme Seus Negócios
+                        <span class="gradient-text">com Inovação</span>
+                    </h1>
+                    <p class="hero-subtitle">Soluções premium que levam sua marca ao próximo nível. Experiência, qualidade e resultados garantidos.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-premium btn-lg">Solicitar Proposta</button>
+                        <button class="btn-secondary-premium btn-lg">
+                            <i class="fas fa-play-circle"></i> Ver Demonstração
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="hero-image-wrapper">
+                        <div class="floating-card card-1" data-aos="fade-up" data-aos-delay="200">
+                            <div class="card-icon"><i class="fas fa-sparkles"></i></div>
+                            <p>Premium Design</p>
+                        </div>
+                        <div class="floating-card card-2" data-aos="fade-up" data-aos-delay="400">
+                            <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                            <p>Performance</p>
+                        </div>
+                        <div class="floating-card card-3" data-aos="fade-up" data-aos-delay="600">
+                            <div class="card-icon"><i class="fas fa-crown"></i></div>
+                            <p>Elite Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS SECTION -->
+    <section class="beneficios-section" id="beneficios">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Por Que Escolher INDIKAE</h2>
+                <p class="section-subtitle">Soluções completas para impulsionar seu crescimento</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-card">
+                        <div class="benefit-icon premium-gradient">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Crescimento Garantido</h4>
+                        <p>Aumente suas vendas em até 300% com nossas estratégias comprovadas.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-card">
+                        <div class="benefit-icon premium-gradient">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>100% Seguro</h4>
+                        <p>Proteção máxima com encriptação de dados e conformidade total.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-card">
+                        <div class="benefit-icon premium-gradient">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>Suporte 24/7</h4>
+                        <p>Equipe dedicada pronta para ajudar você a qualquer momento.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="benefit-card">
+                        <div class="benefit-icon premium-gradient">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Premium Features</h4>
+                        <p>Acesso a todas as features premium sem limitações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-item">
+                        <h3 class="stat-number">5000+</h3>
+                        <p class="stat-label">Clientes Satisfeitos</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <h3 class="stat-number">98%</h3>
+                        <p class="stat-label">Taxa de Satisfação</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-item">
+                        <h3 class="stat-number">15+</h3>
+                        <p class="stat-label">Anos de Experiência</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <h3 class="stat-number">R$ 1B+</h3>
+                        <p class="stat-label">Em Resultados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section" id="clientes">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+                <p class="section-subtitle">Histórias de sucesso de clientes que transformaram seus negócios</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"A INDIKAE transformou completamente meu negócio. Os resultados foram imediatos e superaram minhas expectativas. Recomendo para todos!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MR</div>
+                            <div class="author-info">
+                                <h5>Marina Rosa</h5>
+                                <p>Empreendedora Digital</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Com a equipe da INDIKAE, tive um atendimento impecável. Eles realmente entendem o que você precisa e entregam resultados excepcionais."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">CB</div>
+                            <div class="author-info">
+                                <h5>Carlos Blanco</h5>
+                                <p>CEO - Tech Ventures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Investir com INDIKAE foi a melhor decisão que já tomei. Profissionais sérios, comprometidos e que entregam o que prometem."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AL</div>
+                            <div class="author-info">
+                                <h5>Ana Lucia</h5>
+                                <p>Diretora Financeira</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"A qualidade dos serviços é incomparável. Meu negócio cresceu 250% em apenas 6 meses de parceria com a INDIKAE."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RJ</div>
+                            <div class="author-info">
+                                <h5>Roberto Junior</h5>
+                                <p>Proprietário - RJ Soluções</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"O suporte deles é excepcional. Sempre disponíveis, muito respeitosos e com soluções criativas para cada desafio."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">FB</div>
+                            <div class="author-info">
+                                <h5>Fernanda Barbosa</h5>
+                                <p>Marketing Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"A transparência e confiabilidade que INDIKAE demonstra é rara no mercado. Parceria de longo prazo garantida!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">TP</div>
+                            <div class="author-info">
+                                <h5>Tiago Pereira</h5>
+                                <p>Consultor Empresarial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPOSTA COMERCIAL SECTION -->
+    <section class="proposta-section" id="proposta">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 hero-content">
-                    <h1>Recomende e Ganhe!</h1>
-                    <p>Convide seus amigos para a Wave Company e ganhe recompensas incríveis. Quanto mais você compartilha, mais você ganha!</p>
-                    <div>
-                        <button class="btn-primary-custom">Comece Sua Jornada</button>
-                        <button class="btn-secondary-custom">Saiba Mais</button>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <div style="padding: 2rem;">
-                        <i class="fas fa-handshake" style="font-size: 8rem; color: rgba(255, 255, 255, 0.8);"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FEATURES SECTION -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Por Que Escolher Wave Company?</h2>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <i class="fas fa-gift feature-icon"></i>
-                        <h4>Recompensas Atrativas</h4>
-                        <p>Ganhe bônus generosos toda vez que sua recomendação se torna um cliente ativo. Sem limite de ganhos!</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <i class="fas fa-lock feature-icon"></i>
-                        <h4>100% Seguro</h4>
-                        <p>Sua privacidade e segurança são nossas prioridades. Protegemos seus dados com a melhor tecnologia.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <i class="fas fa-rocket feature-icon"></i>
-                        <h4>Fácil e Rápido</h4>
-                        <p>Cadastre-se em minutos e comece a compartilhar seus links de referência com seus amigos.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <i class="fas fa-chart-line feature-icon"></i>
-                        <h4>Acompanhe Seus Ganhos</h4>
-                        <p>Painel intuitivo para monitorar todas as suas recomendações e ganhos em tempo real.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <i class="fas fa-money-bill-wave feature-icon"></i>
-                        <h4>Saques Flexíveis</h4>
-                        <p>Retire seus ganhos quando quiser. Múltiplas opções de pagamento para sua conveniência.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <i class="fas fa-headset feature-icon"></i>
-                        <h4>Suporte 24/7</h4>
-                        <p>Nossa equipe está sempre pronta para ajudar você com qualquer dúvida ou problema.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="how-it-works" id="como-funciona">
-        <div class="container">
-            <h2 class="section-title">Como Funciona?</h2>
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-circle">1</div>
-                    <h5>Cadastre-se</h5>
-                    <p>Crie sua conta gratuitamente em nosso site em menos de 2 minutos.</p>
-                    <div class="step-line"></div>
-                </div>
-                <div class="step">
-                    <div class="step-circle">2</div>
-                    <h5>Obtenha Seu Link</h5>
-                    <p>Receba seu link de referência exclusivo para compartilhar com amigos.</p>
-                    <div class="step-line"></div>
-                </div>
-                <div class="step">
-                    <div class="step-circle">3</div>
-                    <h5>Compartilhe</h5>
-                    <p>Envie seu link por redes sociais, WhatsApp, email ou qualquer outro meio.</p>
-                    <div class="step-line"></div>
-                </div>
-                <div class="step">
-                    <div class="step-circle">4</div>
-                    <h5>Ganhe Recompensas</h5>
-                    <p>Receba bônus quando seus amigos se cadastram e se tornam clientes ativos.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BENEFITS SECTION -->
-    <section class="benefits" id="beneficios">
-        <div class="container">
-            <h2 class="section-title">Benefícios Exclusivos</h2>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <h2 class="section-title">Pacotes Especiais</h2>
+                    <p class="section-subtitle">Escolha o plano perfeito para seu negócio</p>
+                    
+                    <div class="pricing-list">
+                        <div class="pricing-item">
                             <i class="fas fa-check-circle"></i>
+                            <p><strong>Consultoria Premium</strong> - Análise completa do seu negócio</p>
                         </div>
-                        <div class="benefit-content">
-                            <h5>Sem Investimento Inicial</h5>
-                            <p>Comece completamente grátis. Nenhum custo oculto ou taxas de inscrição.</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
+                        <div class="pricing-item">
                             <i class="fas fa-check-circle"></i>
+                            <p><strong>Implementação</strong> - Deploy rápido e eficiente</p>
                         </div>
-                        <div class="benefit-content">
-                            <h5>Comissões Competitivas</h5>
-                            <p>Oferecemos as melhores taxas de comissão do mercado. Seus ganhos falam por si.</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
+                        <div class="pricing-item">
                             <i class="fas fa-check-circle"></i>
+                            <p><strong>Monitoramento 24/7</strong> - Acompanhamento constante</p>
                         </div>
-                        <div class="benefit-content">
-                            <h5>Programa em Crescimento</h5>
-                            <p>Participe de um programa que está em expansão com novos benefícios constantemente.</p>
+                        <div class="pricing-item">
+                            <i class="fas fa-check-circle"></i>
+                            <p><strong>Suporte Dedicado</strong> - Equipe exclusiva para você</p>
+                        </div>
+                        <div class="pricing-item">
+                            <i class="fas fa-check-circle"></i>
+                            <p><strong>Relatórios Mensais</strong> - Análise detalhada de resultados</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-check-circle"></i>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="pricing-cards-wrapper">
+                        <div class="pricing-card basic" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="plan-badge">Iniciante</div>
+                            <h4>Starter</h4>
+                            <div class="price">
+                                <span class="currency">R$</span>
+                                <span class="amount">1.999</span>
+                                <span class="period">/mês</span>
+                            </div>
+                            <ul class="features-list">
+                                <li><i class="fas fa-check"></i> Até 5 campanhas/mês</li>
+                                <li><i class="fas fa-check"></i> Suporte via email</li>
+                                <li><i class="fas fa-check"></i> Relatórios básicos</li>
+                                <li><i class="fas fa-times"></i> Consultoria dedicada</li>
+                            </ul>
+                            <button class="btn-outline-premium w-100">Solicitar Informações</button>
                         </div>
-                        <div class="benefit-content">
-                            <h5>Dashboard Completo</h5>
-                            <p>Visualize métricas detalhadas e dados sobre seu desempenho e ganhos.</p>
-                        </div>
-                    </div>
 
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-check-circle"></i>
+                        <div class="pricing-card professional active" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="plan-badge premium">Mais Popular</div>
+                            <h4>Professional</h4>
+                            <div class="price">
+                                <span class="currency">R$</span>
+                                <span class="amount">4.999</span>
+                                <span class="period">/mês</span>
+                            </div>
+                            <ul class="features-list">
+                                <li><i class="fas fa-check"></i> Campanhas ilimitadas</li>
+                                <li><i class="fas fa-check"></i> Suporte prioritário 24/7</li>
+                                <li><i class="fas fa-check"></i> Relatórios avançados</li>
+                                <li><i class="fas fa-check"></i> Consultoria 4h/mês</li>
+                            </ul>
+                            <button class="btn-premium w-100">Escolher Plano</button>
                         </div>
-                        <div class="benefit-content">
-                            <h5>Compartilhamento Fácil</h5>
-                            <p>Ferramentas integradas para compartilhar sua referência em qualquer lugar.</p>
-                        </div>
-                    </div>
 
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="benefit-content">
-                            <h5>Comunidade Ativa</h5>
-                            <p>Faça parte de uma comunidade vibrante de afiliados e parceiros bem-sucedidos.</p>
+                        <div class="pricing-card enterprise" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="plan-badge">Premium</div>
+                            <h4>Enterprise</h4>
+                            <div class="price">
+                                <span class="currency">R$</span>
+                                <span class="amount">Personalizado</span>
+                            </div>
+                            <ul class="features-list">
+                                <li><i class="fas fa-check"></i> Solução 100% customizada</li>
+                                <li><i class="fas fa-check"></i> Equipe dedicada</li>
+                                <li><i class="fas fa-check"></i> SLA garantido</li>
+                                <li><i class="fas fa-check"></i> Consultoria ilimitada</li>
+                            </ul>
+                            <button class="btn-outline-premium w-100">Entrar em Contato</button>
                         </div>
                     </div>
                 </div>
@@ -214,84 +385,183 @@
         </div>
     </section>
 
-    <!-- CTA SECTION -->
-    <section class="cta-section" id="cadastro">
+    <!-- FORMULÁRIO SECTION -->
+    <section class="formulario-section" id="formulario">
         <div class="container">
-            <h2>Pronto para Começar a Ganhar?</h2>
-            <p>Junte-se a centenas de usuários que já estão ganhando com Wave Company</p>
-            <button class="btn-primary-custom" style="background-color: white; color: var(--primary-color); font-weight: 700;">Cadastre-se Agora</button>
+            <div class="form-wrapper" data-aos="fade-up">
+                <div class="form-header text-center mb-5">
+                    <h2 class="section-title">Solicite Sua Proposta Comercial</h2>
+                    <p class="section-subtitle">Preencha o formulário e nossa equipe entrará em contato em breve</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <form id="formulario-proposta" class="premium-form">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required>
+                                        <label for="nome">Nome Completo</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="telefone" placeholder="(00) 00000-0000" required>
+                                        <label for="telefone">Telefone</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="empresa" placeholder="Sua Empresa" required>
+                                        <label for="empresa">Empresa</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="servico" required>
+                                            <option value="">Selecione um serviço</option>
+                                            <option value="consultoria">Consultoria Estratégica</option>
+                                            <option value="implementacao">Implementação de Soluções</option>
+                                            <option value="marketing">Marketing Digital</option>
+                                            <option value="transformacao">Transformação Digital</option>
+                                            <option value="outro">Outro</option>
+                                        </select>
+                                        <label for="servico">Serviço de Interesse</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="mensagem" placeholder="Conte-nos mais sobre seu projeto..." style="height: 120px;" required></textarea>
+                                        <label for="mensagem">Mensagem</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="termos" required>
+                                        <label class="form-check-label" for="termos">
+                                            Concordo com os termos e condições de privacidade
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn-premium w-100 btn-lg">
+                                        <i class="fas fa-paper-plane"></i> Enviar Proposta
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL SECTION -->
+    <section class="cta-final">
+        <div class="container text-center" data-aos="fade-up">
+            <h2 class="cta-title">Pronto para Transformar Seu Negócio?</h2>
+            <p class="cta-subtitle">Junte-se a milhares de empresas que já confiam na INDIKAE</p>
+            <button class="btn-premium btn-lg">
+                <i class="fas fa-rocket"></i> Começar Agora
+            </button>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer>
+    <footer class="footer-premium">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="footer-section">
-                        <h6><i class="fas fa-wave-square"></i> Wave Company</h6>
-                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">Ganhe enquanto compartilha com seus amigos. Uma plataforma confiável e profissional.</p>
-                    </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">INDIKAE</h5>
+                    <p class="footer-text">Soluções premium para transformar seu negócio com inovação e excelência.</p>
                 </div>
-
-                <div class="col-md-3">
-                    <div class="footer-section">
-                        <h6>Sobre</h6>
-                        <ul>
-                            <li><a href="#sobre">Quem Somos</a></li>
-                            <li><a href="#missao">Nossa Missão</a></li>
-                            <li><a href="#carreira">Carreira</a></li>
-                            <li><a href="#blog">Blog</a></li>
-                        </ul>
-                    </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Páginas</h5>
+                    <ul class="footer-links">
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#clientes">Clientes</a></li>
+                        <li><a href="#proposta">Pacotes</a></li>
+                        <li><a href="#formulario">Contato</a></li>
+                    </ul>
                 </div>
-
-                <div class="col-md-3">
-                    <div class="footer-section">
-                        <h6>Suporte</h6>
-                        <ul>
-                            <li><a href="#faq">FAQ</a></li>
-                            <li><a href="#contato">Contato</a></li>
-                            <li><a href="#docs">Documentação</a></li>
-                            <li><a href="#status">Status</a></li>
-                        </ul>
-                    </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
                 </div>
-
-                <div class="col-md-3">
-                    <div class="footer-section">
-                        <h6>Redes Sociais</h6>
-                        <div class="social-links">
-                            <a href="#facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-title">Contato</h5>
+                    <p class="footer-text">
+                        <i class="fas fa-envelope"></i> contato@indikae.com<br>
+                        <i class="fas fa-phone"></i> (11) 99999-9999
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Wave Company. Todos os direitos reservados. | <a href="#privacidade" style="color: inherit;">Privacidade</a> | <a href="#termos" style="color: inherit;">Termos de Serviço</a></p>
+            <hr class="footer-divider">
+            <div class="text-center">
+                <p class="footer-copyright">&copy; 2026 INDIKAE. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Inicializar AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('mainNavbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        document.getElementById('formulario-proposta').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const data = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value,
+                empresa: document.getElementById('empresa').value,
+                servico: document.getElementById('servico').value,
+                mensagem: document.getElementById('mensagem').value
+            };
+            
+            console.log('Formulário enviado:', data);
+            alert('Obrigado! Sua proposta foi enviada com sucesso. Entraremos em contato em breve!');
+            this.reset();
         });
     </script>
 </body>
