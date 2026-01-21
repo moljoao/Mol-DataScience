@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViralGrow - Ganha Indicando Amigos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #ff8787;
+            --accent: #ffd166;
+            --dark: #1a1a1a;
+            --light: #fafafa;
+        }
+
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            color: var(--dark);
+            background: linear-gradient(135deg, #fff5e6 0%, #fff0db 100%);
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-emoji {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 5%;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8d1 100%);
+        }
+
+        .hero::before {
+            content: '🚀';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: -100px;
+            right: -100px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '💰';
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.1;
+            bottom: -80px;
+            left: -80px;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(10deg); }
+        }
+
+        .hero-content {
+            max-width: 700px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .hero h1 .emoji {
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .emoji-1 { animation-delay: 0s; }
+        .emoji-2 { animation-delay: 0.1s; }
+        .emoji-3 { animation-delay: 0.2s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.1rem 2.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        /* COMO FUNCIONA */
+        .how-it-works {
+            padding: 6rem 5%;
+            background: white;
+            scroll-margin-top: 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #fff5e6, #ffe8d1);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 107, 107, 0.1);
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation-fill-mode: both;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .step:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.2);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #ffede1, #ffd9c3);
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .step p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* BENEFÍCIOS */
+        .benefits {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .benefits .section-title {
+            color: white;
+        }
+
+        .benefits .section-title span {
+            color: var(--accent);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            padding: 2.5rem;
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            transition: all 0.3s;
+            animation: slideInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .benefit-card:nth-child(1) { animation-delay: 0.1s; }
+        .benefit-card:nth-child(2) { animation-delay: 0.2s; }
+        .benefit-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .benefit-card:hover {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+        }
+
+        .benefit-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* LINK GENERATOR */
+        .link-generator {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .generator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #fff5e6, #ffe8d1);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 3px dashed var(--primary);
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+            transform: scale(1.02);
+        }
+
+        .link-box {
+            background: linear-gradient(135deg, var(--dark), #2d2d2d);
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.6s ease-out;
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.15);
+        }
+
+        .link-text {
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-weight: 600;
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        /* SHARE BUTTONS */
+        .share-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.1);
+        }
+
+        .share-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+        }
+
+        .share-instagram {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743);
+        }
+
+        .share-email {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .share-btn:hover {
+            transform: scale(1.25) rotate(15deg);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.3);
+        }
+
+        /* SOCIAL PROOF */
+        .social-proof {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .social-proof .section-title {
+            color: white;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2.5rem;
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation-fill-mode: both;
+        }
+
+        .stat:nth-child(1) { animation-delay: 0.1s; }
+        .stat:nth-child(2) { animation-delay: 0.2s; }
+        .stat:nth-child(3) { animation-delay: 0.3s; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .testimonial {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            animation: slideInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+        }
+
+        .testimonial:nth-child(1) { animation-delay: 0.4s; }
+        .testimonial:nth-child(2) { animation-delay: 0.5s; }
+        .testimonial:nth-child(3) { animation-delay: 0.6s; }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            padding: 6rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 10rem;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .final-cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .final-cta .cta-button:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--primary);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                padding: 1rem 3%;
+            }
+
+            nav a {
+                margin: 0 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .link-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .copy-btn {
+                margin-left: 0;
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+            .generator-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo"><span class="logo-emoji">🚀</span>ViralGrow</div>
+        <div>
+            <a href="#como-funciona">Como Funciona</a>
+            <a href="#beneficios">Benefícios</a>
+            <a href="#gerar-link">Link Grátis</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                <span class="emoji emoji-1">🤑</span>
+                Ganha indicando <span>amigos</span>
+                <span class="emoji emoji-2">📱</span>
+            </h1>
+            <p>Receba link único, compartilhe com os amigos e ganhe recorrentemente. Sem complicação, sem taxa, 100% grátis.</p>
+            <button class="cta-button" onclick="scrollTo('#gerar-link')">Quero meu link grátis agora</button>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="how-it-works" id="como-funciona">
+        <h2 class="section-title">Como <span>funciona</span> (muito fácil!)</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1️⃣</div>
+                <h3>Cadastra aí</h3>
+                <p>Coloca seu nome e email. Pronto! 30 segundos e você tá dentro.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2️⃣</div>
+                <h3>Pega seu link</h3>
+                <p>Copia o link único com seu código. Tá pronto pra compartilhar.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3️⃣</div>
+                <h3>Compartilha e ganha</h3>
+                <p>Manda pro WhatsApp, Instagram, TikTok... e é só ganhar direto na conta.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="benefits" id="beneficios">
+        <h2 class="section-title">Por que é <span>tão bom</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💵</div>
+                <h3>Ganha Muito</h3>
+                <p>Até 25% de comissão recorrente. Quanto mais amigos, mais ganha. Sem teto máximo!</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Súper Fácil</h3>
+                <p>Só copia e compartilha. Sistema automático que faz tudo sozinho pra você.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <h3>Ganho Todo Mês</h3>
+                <p>Recebe comissão todo mês enquanto seus amigos tiverem ativos. Ganho passivo!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GERADOR DE LINK -->
+    <section class="link-generator" id="gerar-link">
+        <h2 class="section-title">Gera seu <span>link agora</span> 🎉</h2>
+        <div class="generator-container">
+            <form onsubmit="gerarLink(event)">
+                <div class="form-group">
+                    <label for="nome">Qual é seu nome?</label>
+                    <input type="text" id="nome" placeholder="João (ou como você prefere)" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Seu email</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
+                
+                <div id="link-resultado" style="display:none;">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--dark); font-size: 1.5rem;">🎊 Seu link tá pronto!</h3>
+                    <div class="link-box">
+                        <span class="link-text" id="link-valor">https://viralgrow.com/ref?code=JOAO8394</span>
+                        <button type="button" class="copy-btn" onclick="copiarLink()">Copiar</button>
+                    </div>
+
+                    <div class="share-buttons">
+                        <button type="button" class="share-btn share-whatsapp" onclick="compartilharWhatsApp()" title="WhatsApp">💬</button>
+                        <button type="button" class="share-btn share-instagram" onclick="compartilharInstagram()" title="Instagram">📷</button>
+                        <button type="button" class="share-btn share-email" onclick="compartilharEmail()" title="Email">✉️</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-button" style="width: 100%;" id="gerar-btn">Gera meu link agora</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- PROVA SOCIAL -->
+    <section class="social-proof">
+        <h2 class="section-title">Tá funcionando <span>demais</span></h2>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">120K+</div>
+                <div class="stat-label">Pessoas Ganhando</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$5.3M</div>
+                <div class="stat-label">Pagos em Comissões</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4.9⭐</div>
+                <div class="stat-label">Avaliação</div>
+            </div>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 3rem;">O povo <span>tá amando</span></h3>
+        
+        <div class="testimonials">
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Comecei por brincadeira e viralizou! Agora ganho R$ 8 mil por mês só compartilhando."</p>
+                <div class="testimonial-author">— Ana (@ana_influencer)</div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Meu segredo é compartilhar nos stories. Fácil demais ganhar dinheiro assim!"</p>
+                <div class="testimonial-author">— Felipe (São Paulo)</div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Passei meu link pro meu grupo de amigos e todo mês é mais comissão! Recomendo!"</p>
+                <div class="testimonial-author">— Marina (TikToker)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <h2>Bora ganhar? 💰</h2>
+        <p>Milhões de reais sendo pagos todos os dias. Você vai ficar pra trás?</p>
+        <button class="cta-button" onclick="scrollTo('#gerar-link')">Quero começar agora</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 ViralGrow. Feito com 💙 pra você ganhar. #GanhaIndicando</p>
+    </footer>
+
+    <script>
+        function gerarLink(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            
+            const codigoReferencia = nome.split(' ')[0].toUpperCase() + Math.floor(Math.random() * 9000 + 1000);
+            const link = `https://viralgrow.com/ref?code=${codigoReferencia}`;
+            
+            document.getElementById('link-valor').textContent = link;
+            document.getElementById('link-resultado').style.display = 'block';
+            document.getElementById('gerar-btn').style.display = 'none';
+            
+            setTimeout(() => {
+                document.getElementById('link-resultado').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function copiarLink() {
+            const link = document.getElementById('link-valor').textContent;
+            navigator.clipboard.writeText(link);
+            
+            const btn = event.target;
+            btn.textContent = '✓ Copiado!';
+            btn.classList.add('copied');
+            
+            setTimeout(() => {
+                btn.textContent = 'Copiar';
+                btn.classList.remove('copied');
+            }, 2000);
+        }
+
+        function compartilharWhatsApp() {
+            const link = document.getElementById('link-valor').textContent;
+            const texto = `🤑 Tá ganhando MUITO indicando amigos! Copia esse link e vem ganhar comigo: ${link}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`);
+        }
+
+        function compartilharInstagram() {
+            alert('Link copiado! Cole no seu Instagram bio ou stories! 📱');
+            copiarLink();
+        }
+
+        function compartilharEmail() {
+            const link = document.getElementById('link-valor').textContent;
+            window.location.href = `mailto:?subject=Ganha comigo na ViralGrow!&body=Olha só que tá bom! ${link}`;
+        }
+
+        function scrollTo(selector) {
+            document.querySelector(selector).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Animações ao scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.step, .benefit-card, .stat, .testimonial').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

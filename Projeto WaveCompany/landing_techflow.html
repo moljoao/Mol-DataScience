@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow - Sistema de Indicação Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066ff;
+            --secondary: #00d9ff;
+            --dark: #0a0e27;
+            --light: #f0f4ff;
+            --text: #1a1f3a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, var(--light) 100%);
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 102, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content {
+            max-width: 700px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: slideUpFade 0.8s ease-out;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+        }
+
+        /* COMO FUNCIONA */
+        .how-it-works {
+            padding: 6rem 5%;
+            background: white;
+            scroll-margin-top: 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--light), #ffffff);
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 102, 255, 0.1);
+            animation: slideUpFade 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
+            border-color: var(--primary);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* BENEFÍCIOS */
+        .benefits {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2555 100%);
+            color: white;
+        }
+
+        .benefits .section-title {
+            color: white;
+        }
+
+        .benefits .section-title span {
+            color: var(--secondary);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            animation: slideUpFade 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .benefit-card:nth-child(1) { animation-delay: 0.1s; }
+        .benefit-card:nth-child(2) { animation-delay: 0.2s; }
+        .benefit-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* LINK GENERATOR */
+        .link-generator {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .generator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--light), white);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 102, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(0, 102, 255, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        .link-box {
+            background: white;
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideUpFade 0.6s ease-out;
+        }
+
+        .link-text {
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 1rem;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        /* SHARE BUTTONS */
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .share-whatsapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .share-instagram {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .share-email {
+            background: var(--primary);
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        /* SOCIAL PROOF */
+        .social-proof {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2555 100%);
+            color: white;
+        }
+
+        .social-proof .section-title {
+            color: white;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            animation: slideUpFade 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .stat:nth-child(1) { animation-delay: 0.1s; }
+        .stat:nth-child(2) { animation-delay: 0.2s; }
+        .stat:nth-child(3) { animation-delay: 0.3s; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            animation: slideUpFade 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .testimonial:nth-child(1) { animation-delay: 0.4s; }
+        .testimonial:nth-child(2) { animation-delay: 0.5s; }
+        .testimonial:nth-child(3) { animation-delay: 0.6s; }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            padding: 6rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .final-cta .cta-button:hover {
+            background: var(--light);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 102, 255, 0.2);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                padding: 1rem 3%;
+            }
+
+            nav a {
+                margin: 0 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .link-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .copy-btn {
+                margin-left: 0;
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">⚡ TechFlow</div>
+        <div>
+            <a href="#como-funciona">Como Funciona</a>
+            <a href="#beneficios">Benefícios</a>
+            <a href="#gerar-link">Gerar Link</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Ganhe recorrentemente <span>indicando amigos</span></h1>
+            <p>Gere seu link de indicação único e comece a ganhar comissões de forma automática. Sem limites, sem restrições.</p>
+            <button class="cta-button" onclick="scrollTo('#gerar-link')">Quero indicar e ganhar</button>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="how-it-works" id="como-funciona">
+        <h2 class="section-title">Como <span>funciona</span></h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Cadastre-se</h3>
+                <p>Crie sua conta gratuitamente em menos de 2 minutos e acesse seu painel de controle.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Gere seu Link</h3>
+                <p>Obtenha seu link de indicação personalizado com seu código único de referência.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Indique e Ganhe</h3>
+                <p>Compartilhe com amigos e comece a receber comissões automaticamente a cada indicação confirmada.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="benefits" id="beneficios">
+        <h2 class="section-title">Por que indicar com <span>TechFlow</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>Recompensas Altas</h3>
+                <p>Ganhe até 30% de comissão em cada indicação com sucesso. Sem teto máximo de ganhos.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Automático e Fácil</h3>
+                <p>Sistema totalmente automatizado. Apenas compartilhe e deixe o dinheiro entrar.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <h3>Ganhos Recorrentes</h3>
+                <p>Receba comissões mensais enquanto seus indicados permanecerem ativos na plataforma.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GERADOR DE LINK -->
+    <section class="link-generator" id="gerar-link">
+        <h2 class="section-title">Gere seu <span>link de indicação</span></h2>
+        <div class="generator-container">
+            <form onsubmit="gerarLink(event)">
+                <div class="form-group">
+                    <label for="nome">Qual é o seu nome?</label>
+                    <input type="text" id="nome" placeholder="João Silva" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Seu melhor email</label>
+                    <input type="email" id="email" placeholder="joao@email.com" required>
+                </div>
+                
+                <div id="link-resultado" style="display:none;">
+                    <h3 style="text-align: center; margin-bottom: 1rem; color: var(--dark);">Seu link personalizado está pronto! 🎉</h3>
+                    <div class="link-box">
+                        <span class="link-text" id="link-valor">https://techflow.com/oferta?ref=JOAO123</span>
+                        <button type="button" class="copy-btn" onclick="copiarLink()">Copiar</button>
+                    </div>
+
+                    <div class="share-buttons">
+                        <button type="button" class="share-btn share-whatsapp" onclick="compartilharWhatsApp()" title="Compartilhar no WhatsApp">💬</button>
+                        <button type="button" class="share-btn share-instagram" onclick="compartilharInstagram()" title="Compartilhar no Instagram">📷</button>
+                        <button type="button" class="share-btn share-email" onclick="compartilharEmail()" title="Compartilhar por Email">✉️</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="cta-button" style="width: 100%;" id="gerar-btn">Gerar meu Link Agora</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- PROVA SOCIAL -->
+    <section class="social-proof">
+        <h2 class="section-title">Nossos números <span>falam por si</span></h2>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Afiliados Ativos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">$2.5M</div>
+                <div class="stat-label">Pago em Comissões</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Satisfação</div>
+            </div>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 3rem;">O que dizem nossos <span>top afiliados</span></h3>
+        
+        <div class="testimonials">
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Comecei indicando amigos por diversão, agora ganho R$ 5 mil por mês passivamente. Incrível!"</p>
+                <div class="testimonial-author">- Carlos M., São Paulo</div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"O melhor programa de indicação que já participei. Suporte rápido e pagamentos sempre no prazo."</p>
+                <div class="testimonial-author">- Marina L., Rio de Janeiro</div>
+            </div>
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Sistema automático, sem stress. Apenas compartilho meu link e deixo o dinheiro entrar."</p>
+                <div class="testimonial-author">- Felipe P., Belo Horizonte</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <h2>Pronto para começar a ganhar?</h2>
+        <p>Junte-se a mais de 50 mil afiliados que já estão ganhando com TechFlow</p>
+        <button class="cta-button" onclick="scrollTo('#gerar-link')">Gerar Meu Link Agora</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 TechFlow. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function gerarLink(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            
+            const codigoReferencia = nome.split(' ')[0].toUpperCase() + Math.floor(Math.random() * 900 + 100);
+            const link = `https://techflow.com/oferta?ref=${codigoReferencia}`;
+            
+            document.getElementById('link-valor').textContent = link;
+            document.getElementById('link-resultado').style.display = 'block';
+            document.getElementById('gerar-btn').style.display = 'none';
+            
+            // Scroll suave
+            setTimeout(() => {
+                document.getElementById('link-resultado').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function copiarLink() {
+            const link = document.getElementById('link-valor').textContent;
+            navigator.clipboard.writeText(link);
+            
+            const btn = event.target;
+            btn.textContent = '✓ Copiado!';
+            btn.classList.add('copied');
+            
+            setTimeout(() => {
+                btn.textContent = 'Copiar';
+                btn.classList.remove('copied');
+            }, 2000);
+        }
+
+        function compartilharWhatsApp() {
+            const link = document.getElementById('link-valor').textContent;
+            const texto = `Olha só! Encontrei um programa incrível de indicação. Ganho recorrentemente recomendando. Venha usar meu link: ${link}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`);
+        }
+
+        function compartilharInstagram() {
+            alert('Link copiado! Cole no seu Instagram ou stories.');
+            copiarLink();
+        }
+
+        function compartilharEmail() {
+            const link = document.getElementById('link-valor').textContent;
+            window.location.href = `mailto:?subject=Programa de Indicação TechFlow&body=Venha ganhar recorrentemente comigo! ${link}`;
+        }
+
+        function scrollTo(selector) {
+            document.querySelector(selector).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Animação ao scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideUpFade 0.8s ease-out forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.step, .benefit-card, .stat, .testimonial').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

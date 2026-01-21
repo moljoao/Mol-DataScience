@@ -1,0 +1,398 @@
+/* ========================================
+   EFEITOS VISUAIS AVANÇADOS - COMPLEMENTAR
+   ======================================== */
+
+/* Gradiente animado de fundo */
+@keyframes slidingGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Background com padrão de grade sutil */
+.hero-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(179, 143, 111, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(179, 143, 111, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    animation: gridShift 20s linear infinite;
+}
+
+@keyframes gridShift {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        transform: translateX(50px) translateY(50px);
+    }
+}
+
+/* Linhas animadas no fundo */
+.hero-premium::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(0deg, transparent 24%, rgba(179, 143, 111, 0.05) 25%, rgba(179, 143, 111, 0.05) 26%, transparent 27%, transparent 74%, rgba(179, 143, 111, 0.05) 75%, rgba(179, 143, 111, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(179, 143, 111, 0.05) 25%, rgba(179, 143, 111, 0.05) 26%, transparent 27%, transparent 74%, rgba(179, 143, 111, 0.05) 75%, rgba(179, 143, 111, 0.05) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Efeito de scanning lines */
+@keyframes scanlines {
+    0% {
+        text-shadow: 
+            0 -2px 1px #ff00de,
+            2px -2px 1px #00ffff,
+            -4px -2px 1px #ffff00;
+    }
+    20% {
+        text-shadow: 
+            2px 2px 1px #ff00de,
+            2px -2px 1px #00ffff,
+            -4px -2px 1px #ffff00;
+    }
+    40% {
+        text-shadow: 
+            2px 0 1px #ff00de,
+            0 2px 1px #00ffff,
+            4px 0 1px #ffff00;
+    }
+    60% {
+        text-shadow: 
+            0 0 1px #ff00de,
+            0 0 1px #00ffff,
+            0 0 1px #ffff00;
+    }
+    80% {
+        text-shadow: 
+            -2px 0 1px #ff00de,
+            -2px -2px 1px #00ffff,
+            -4px 2px 1px #ffff00;
+    }
+    100% {
+        text-shadow: 
+            0 -2px 1px #ff00de,
+            2px -2px 1px #00ffff,
+            -4px -2px 1px #ffff00;
+    }
+}
+
+/* Efeito de holo no texto */
+.hero-title::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0.1;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(1px);
+}
+
+/* Efeito de pulsação em ícones */
+@keyframes iconPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 0 rgba(179, 143, 111, 0.4));
+    }
+    50% {
+        filter: drop-shadow(0 0 10px rgba(179, 143, 111, 0.8));
+    }
+}
+
+.benefit-icon {
+    position: relative;
+}
+
+.benefit-icon::before {
+    content: '';
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    opacity: 0;
+    animation: radiusExpand 1.5s ease-out infinite;
+}
+
+@keyframes radiusExpand {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.8);
+    }
+}
+
+/* Efeito de correlação de cor em hover */
+@keyframes colorShift {
+    0%, 100% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(15deg) brightness(1.1);
+    }
+}
+
+.benefit-card:hover {
+    animation: colorShift 2s ease-in-out;
+}
+
+/* Linha de destaque animada */
+.section-title::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--warm-sand));
+    animation: lineExpand 0.8s ease-out forwards;
+}
+
+@keyframes lineExpand {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Efeito de reflexo no background */
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0%, 100% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+}
+
+/* Floating particles background */
+.particles-container {
+    position: absolute !important;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.particle {
+    animation: particleFloat 20s infinite linear;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.1;
+    }
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px) rotate(360deg);
+        opacity: 0.1;
+    }
+}
+
+/* Efeito de brilho progressivo no carregamento */
+@keyframes loadingGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(179, 143, 111, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(179, 143, 111, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(179, 143, 111, 0.3);
+    }
+}
+
+.btn-premium {
+    position: relative;
+}
+
+.btn-premium::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    border-radius: 8px;
+    opacity: 0;
+}
+
+/* Efeito de múltiplas camadas de sombra */
+.testimonial-card,
+.benefit-card {
+    position: relative;
+}
+
+.testimonial-card::before,
+.benefit-card::before {
+    z-index: -1;
+}
+
+/* Animação de entrada em cascata */
+@keyframes cascadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) rotateX(-20deg);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+        filter: blur(0);
+    }
+}
+
+/* Aplicar aos cards em sequência */
+.benefit-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.benefit-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.benefit-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.benefit-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Efeito de nebulosa no fundo */
+@keyframes nebulaShift {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+        opacity: 0.4;
+    }
+    66% {
+        transform: translate(-50px, 50px) scale(0.9);
+        opacity: 0.6;
+    }
+}
+
+.hero-gradient {
+    animation: nebulaShift 30s ease-in-out infinite !important;
+}
+
+/* Glow effect em links do footer */
+.footer-links a {
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--warm-sand);
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* Efeito chromatic aberration sutil */
+@keyframes chromaticGlitch {
+    0% {
+        text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    }
+    10% {
+        text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    }
+    20% {
+        text-shadow: -4px 0 #ff00de, 4px 0 #00ffff;
+    }
+    30% {
+        text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    }
+    100% {
+        text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    }
+}
+
+/* Efeito de "respiração" nos cards principais */
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01);
+    }
+}
+
+.pricing-card.active {
+    animation: breathe 3s ease-in-out infinite;
+}
+
+/* Suporte para modo escuro */
+@media (prefers-color-scheme: dark) {
+    .form-wrapper {
+        background: linear-gradient(135deg, rgba(242, 241, 237, 0.1) 0%, rgba(242, 241, 237, 0.05) 100%);
+        border-color: rgba(179, 143, 111, 0.2);
+    }
+}
+
+/* Efeito de linha animada na borda dos elementos importantes */
+.premium-gradient::after {
+    animation: animatedBorder 3s linear infinite !important;
+}
+
+@keyframes animatedBorder {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
