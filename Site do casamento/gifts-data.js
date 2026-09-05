@@ -1,5 +1,21 @@
 const GIFT_CATEGORIES = [
     {
+        id: 'lua-de-mel',
+        name: 'Lua de Mel',
+        items: [
+            { id: 'viagem-noivos-1', name: 'Viagem Lua de Mel', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-2', name: 'Viagem Lua de Mel', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-3', name: 'Viagem Lua de Mel', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-4', name: 'Viagem dos Noivos', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-5', name: 'Viagem dos Noivos', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-6', name: 'Viagem dos Noivos', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-7', name: 'Viagem dos Noivos', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-8', name: 'Viagem dos Noivos', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-9', name: 'Viagem dos Noivos', type: 'customAmount', pix: '11944038776' },
+            { id: 'viagem-noivos-10', name: 'Viagem dos Noivos', type: 'customAmount', pix: '11944038776' }
+        ]
+    },
+    {
         id: 'eletrodomesticos',
         name: 'Eletrodomésticos e Portáteis',
         items: [
