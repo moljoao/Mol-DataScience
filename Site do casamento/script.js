@@ -381,20 +381,27 @@ async function buscarReservasDePresentesSupabase() {
     }
 }
 
-async function reservarPresenteSupabase(giftId, guestName) {
+async function reservarPresenteSupabase(giftId, guestName, contributionAmount) {
     try {
+        const payload = {
+            gift_id: giftId,
+            guest_name: guestName,
+            reserved_at: new Date().toISOString()
+        };
+
+        if (contributionAmount != null) {
+            payload.contribution_amount = contributionAmount;
+        }
+
         const response = await fetch(`${SUPABASE_URL}/rest/v1/${GIFT_RESERVATIONS_TABLE}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Prefer': 'return=minimal'
             },
-            body: JSON.stringify({
-                gift_id: giftId,
-                guest_name: guestName,
-                reserved_at: new Date().toISOString()
-            })
+            body: JSON.stringify(payload)
         });
 
         if (!response.ok) {
@@ -484,6 +491,8 @@ class GiftRegistry {
         this.modalId = document.getElementById('giftModalId');
         this.modalAction = document.getElementById('giftModalAction');
         this.modalName = document.getElementById('giftModalName');
+        this.modalAmountWrap = document.getElementById('giftModalAmountWrap');
+        this.modalAmount = document.getElementById('giftModalAmount');
         this.reserveForm = document.getElementById('giftReserveForm');
         this.modalSubmitBtn = this.reserveForm?.querySelector('button[type="submit"]');
 
@@ -512,13 +521,27 @@ class GiftRegistry {
     }
 
     getAllGifts() {
+        const featuredGiftIds = ['viagem-noivos-1', 'viagem-noivos-2', 'viagem-noivos-3'];
+
         return GIFT_CATEGORIES.flatMap((category) =>
             category.items.map((item) => ({
                 ...item,
                 categoryId: category.id,
-                categoryName: category.name
+                categoryName: category.name,
+                name: featuredGiftIds.includes(item.id) ? 'Viagem Lua de Mel' : item.name
             }))
         );
+    }
+
+    shuffleArray(items) {
+        const shuffled = [...items];
+
+        for (let index = shuffled.length - 1; index > 0; index -= 1) {
+            const randomIndex = Math.floor(Math.random() * (index + 1));
+            [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+        }
+
+        return shuffled;
     }
 
     loadLocalReservations() {
@@ -549,8 +572,12 @@ class GiftRegistry {
         }
     }
 
-    async reserveGift(giftId, guestName) {
-        await reservarPresenteSupabase(giftId, guestName);
+    isCustomAmountGift(gift) {
+        return gift?.type === 'customAmount';
+    }
+
+    async reserveGift(giftId, guestName, contributionAmount) {
+        await reservarPresenteSupabase(giftId, guestName, contributionAmount);
         this.reservations[giftId] = {
             guestName,
             reservedAt: new Date().toISOString()
@@ -579,14 +606,27 @@ class GiftRegistry {
 
     getFilteredGifts() {
         const term = this.searchTerm.trim().toLowerCase();
+        const featuredGiftIds = ['viagem-noivos-1', 'viagem-noivos-2', 'viagem-noivos-3'];
 
-        return this.getAllGifts().filter((gift) => {
+        let gifts = this.getAllGifts().filter((gift) => {
             const matchesCategory = this.activeCategory === 'all' || gift.categoryId === this.activeCategory;
             const matchesSearch = !term ||
                 gift.name.toLowerCase().includes(term) ||
                 gift.categoryName.toLowerCase().includes(term);
             return matchesCategory && matchesSearch;
         });
+
+        if (this.activeCategory === 'all') {
+            const featuredGifts = gifts.filter((gift) => featuredGiftIds.includes(gift.id));
+            const remainingGifts = this.shuffleArray(gifts.filter((gift) => !featuredGiftIds.includes(gift.id)));
+            const orderedFeatured = featuredGifts.sort((firstGift, secondGift) =>
+                featuredGiftIds.indexOf(firstGift.id) - featuredGiftIds.indexOf(secondGift.id)
+            );
+
+            return [...orderedFeatured, ...remainingGifts];
+        }
+
+        return this.shuffleArray(gifts);
     }
 
     updateStats(gifts) {
@@ -604,14 +644,21 @@ class GiftRegistry {
         const productLink = gift.link
             ? `<a class="gift-card-link" href="${gift.link}" target="_blank" rel="noopener noreferrer">Link para compra</a>`
             : '';
+        const pixInfo = this.isCustomAmountGift(gift) && gift.pix
+            ? `<p class="gift-card-pix">PIX: <strong>${gift.pix}</strong></p>`
+            : '';
+        const hint = this.isCustomAmountGift(gift)
+            ? 'Escolha um valor e reserve este card para contribuir com a nossa lua de mel.'
+            : 'Escolha este item para reservar com a nossa família.';
 
         return `
-            <article class="gift-card${isUnavailable ? ' gift-card--unavailable' : ''}" data-gift-id="${gift.id}">
+            <article class="gift-card${isUnavailable ? ' gift-card--unavailable' : ''}${this.isCustomAmountGift(gift) ? ' gift-card--honeymoon' : ''}" data-gift-id="${gift.id}">
                 <div class="gift-card-main">
                     <div class="gift-card-meta">
                         <span class="gift-card-category">${gift.categoryName}</span>
                         <h3 class="gift-card-title">${gift.name}</h3>
-                        ${isUnavailable ? `<p class="gift-card-reserved-by">Reservado por <span class="gift-card-reserved-name">${reservation.guestName}</span></p>` : '<p class="gift-card-hint">Escolha este item para reservar com a nossa família.</p>'}
+                        ${pixInfo}
+                        ${isUnavailable ? `<p class="gift-card-reserved-by">Reservado por <span class="gift-card-reserved-name">${reservation.guestName}</span></p>` : `<p class="gift-card-hint">${hint}</p>`}
                     </div>
                     <div class="gift-card-actions">
                         <span class="gift-card-status">${isUnavailable ? 'Indisponível' : 'Disponível'}</span>
@@ -655,10 +702,22 @@ class GiftRegistry {
         this.modalImage?.removeAttribute('src');
         this.modalImage?.setAttribute('alt', gift.name);
         this.modalName.value = '';
+        const showAmount = action === 'reserve' && this.isCustomAmountGift(gift);
+
+        if (this.modalAmountWrap) {
+            this.modalAmountWrap.hidden = !showAmount;
+        }
+        if (this.modalAmount) {
+            this.modalAmount.required = showAmount;
+            this.modalAmount.value = '';
+        }
 
         if (action === 'cancel') {
             this.modalText.textContent = 'Informe o nome usado para reservar este presente para desfazer a reserva.';
             this.modalSubmitBtn.textContent = 'Desfazer reserva';
+        } else if (showAmount) {
+            this.modalText.textContent = `Informe seu nome e o valor que deseja contribuir. PIX: ${gift.pix || ''}`;
+            this.modalSubmitBtn.textContent = 'Confirmar reserva';
         } else {
             this.modalText.textContent = 'Informe seu nome para reservar este presente e deixe o carinho de uma forma elegante e simples.';
             this.modalSubmitBtn.textContent = 'Confirmar reserva';
@@ -678,6 +737,8 @@ class GiftRegistry {
         this.modalAction.value = 'reserve';
         this.modalSubmitBtn.textContent = 'Confirmar reserva';
         this.modalText.textContent = 'Informe seu nome para reservar este presente e deixe o carinho de uma forma elegante e simples.';
+        if (this.modalAmountWrap) this.modalAmountWrap.hidden = true;
+        if (this.modalAmount) this.modalAmount.required = false;
     }
 
     bindEvents() {
@@ -726,7 +787,18 @@ class GiftRegistry {
             const giftId = this.modalId.value;
             const guestName = this.modalName.value.trim();
             const action = this.modalAction.value;
+            const gift = this.getAllGifts().find((item) => item.id === giftId);
             if (!giftId || !guestName) return;
+
+            let contributionAmount;
+            if (action === 'reserve' && this.isCustomAmountGift(gift)) {
+                const parsedAmount = Number(this.modalAmount?.value);
+                if (!Number.isFinite(parsedAmount) || parsedAmount <= 0) {
+                    alert('Informe um valor válido para contribuir.');
+                    return;
+                }
+                contributionAmount = Number(parsedAmount.toFixed(2));
+            }
 
             const submitBtn = this.reserveForm.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
@@ -736,7 +808,7 @@ class GiftRegistry {
                 if (action === 'cancel') {
                     await this.cancelGiftReservation(giftId, guestName);
                 } else {
-                    await this.reserveGift(giftId, guestName);
+                    await this.reserveGift(giftId, guestName, contributionAmount);
                 }
 
                 this.closeModal();
